@@ -58,6 +58,7 @@ function startQuiz() {
     $("#startscreen").hide() 
   
     quizquestionview = $("<div> </div>")  
+    let container = $('<div></div>').addClass('two_row')
     var options = $("<span> </span>").addClass("row")
     var optionsbutton = $("<span> </span>").addClass("row")
     quizquestionoptions = [
@@ -74,8 +75,9 @@ function startQuiz() {
     timer = $("<div> </div>")
     $("#quiz").show()
     .append(quizquestionview)
-    .append(options.append(quizquestionoptions))
-    .append(optionsbutton.append(quizquestioninput))
+    .append(container
+        .append(options.append(quizquestionoptions))
+        .append(optionsbutton.append(quizquestioninput)))
     .append(quizquestionsubmit)
     .append(timer)
     displayquestion()

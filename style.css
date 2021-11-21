@@ -1,4 +1,12 @@
 .row {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
+
 }
+
+.two_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+}
+
