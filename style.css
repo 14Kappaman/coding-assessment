@@ -10,3 +10,22 @@
     justify-content: center;
 }
 
+body {
+    background-color: darkgrey;
+    font-size: 30px;
+    color: darkslateblue;
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+}
+button {
+    background-color:white;
+    padding: 10px;
+    border-radius: 5px;
+    border: blue 1px solid;
+    cursor:pointer;
+
+
+}
+button:hover {
+    background-color: turquoise;
+}
