@@ -11,32 +11,40 @@ var score;
 var scoreview;
 
 var questions = [
-    {question: "Which item is an example of a physical change?", options: {
-        a: "freezing",
-        b: "rusting",
-        c: "spoiling",
-        d: "digesting",
+    {question: "How do you comment in Javascript?", options: {
+        a: "//",
+        b: "..",
+        c: "<",
+        d: "=>",
     }, answer: "a"}, 
-    {question: "Ice melting is an example of a?", options: {
-        a: "chemical change",
-        b: "physical change"
+    {question: "How do you declare a variable that can not change?", options: {
+        a: "var",
+        b: "const",
+        c: "let",
+        d: "auto",
         
     }, answer: "b"},
-    {question: "Roasting a marshmallow is an example of a?", options: {
-        a: "chemical change",
-        b: "physical change",
+    {question: "How do you declare a function?", options: {
+        a: "var",
+        b: "if",
+        c: "function display()",
+        d: "display()"
        
-    }, answer: "a"},
-    {question: "Is moving the lawn an example of physical or chemical change?", options: {
-        a: "chemical change",
-        b: "physical change",
+    }, answer: "c"},
+    {question: "How do you declare an anonymous function?", options: {
+        a: "lambda",
+        b: "function display()",
+        c: "AF",
+        d: "() => ()",
         
-    }, answer: "b"},
-    {question: "Is bleaching your hair a physical or chemical change?", options: {
-        a: "physical change",
-        b: "chemical change",
+    }, answer: "d"},
+    {question: "Inside which HTML do we put the Javascript? ", options: {
+        a: "<scripting>",
+        b: "<javascript>",
+        c: "<script>",
+        d: "<js>"
     
-    }, answer: "b"}
+    }, answer: "c"}
 ]
 function displayquestion(questionnumber){
     var currentquestion=questions[questionnumber]
@@ -44,7 +52,7 @@ function displayquestion(questionnumber){
     buttonscontainer.html("")
     for (let key in currentquestion.options){
         var button=$("<button></button>")  
-        button.html(currentquestion.options[key])  
+        button.text(currentquestion.options[key])  
         buttonscontainer.append(button) 
         button.on("click", () => {
             onanswer(currentquestion.answer,key,questionnumber+1)
@@ -65,13 +73,14 @@ displayquestion(nextquestion)
 }
 
 function displayStartMenu() {
+    $("#startscreen").show().text("")
 var highscoreview =$("<div></div>")
 var keys=Object.keys(window.localStorage)
-var display=""
+var display="High Scores <br>"
 keys.forEach(key =>{
-    display+=`x${key}
+    display+=`${key}
     
-    ${window.localStorage.getItem(key)}`
+    ${window.localStorage.getItem(key)}<br>`
 })
 highscoreview.html(display)
     var button = $("<button>startquiz</button>").on("click", startQuiz)
@@ -79,6 +88,7 @@ highscoreview.html(display)
 }
 
 function startQuiz() {
+    score=0
     $("#startscreen").hide() 
   scoreview=$("<div> </div>")
     quizquestionview = $("<div> </div>")  
@@ -86,7 +96,7 @@ function startQuiz() {
     buttonscontainer = $('<div></div>').addClass('buttonscontainer')
   
     timerview = $("<div> </div>")
-    $("#quiz").show()
+    $("#quiz").show().text("")
     .append(quizquestionview)
     .append(buttonscontainer)
     .append(scoreview)   
@@ -111,7 +121,7 @@ function updatetimer( ) {
 }
 
 function startresults() {
-    $("#results").show()
+    $("#results").show().text ("")
     var Initialsinput=$("<input type=`text`>")
     var submit=$("<button>Save High Score</button>")
     submit.on("click", () => {
@@ -124,9 +134,15 @@ function startresults() {
     $("#quiz").hide()
     scoreview=$("<div> </div>")
     .html(`Your High Score is ${score}`)
+    var reset=$("<button>RESET</button>")
+    reset.on("click",() => {
+        $("#results").hide()
+        displayStartMenu()
+    })  
     $("#results").append(scoreview)
     .append(Initialsinput)
     .append(submit)
-}
+    .append(reset)
+}   
 displayStartMenu()
 
